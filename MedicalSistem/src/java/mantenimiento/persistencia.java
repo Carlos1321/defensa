@@ -9,6 +9,6 @@ package mantenimiento;
  *
  * @author angel.lopezusam
  */
-public class Angel {
+public class persistencia {
     
 }
