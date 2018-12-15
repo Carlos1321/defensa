@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>perfil Personal</title>
         <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
@@ -26,7 +25,7 @@
                 </p:growl>
                 
                 <h:form id="form1">
-                    <p:panel id="panel1" header="Perfil de Personal" style="width: 50%; align-content: center; text-align: center;">  
+                    <p:panel id="panel1" header="Perfil de Personal" style="width: 50%; align-content: center; text-align: center;" >  
                         <h:panelGrid columns="2" cellspacing="8" style="margin: auto;">
 
                                 <h:outputLabel for="primer_nombre" value="Primer Nombre"/>
@@ -56,19 +55,19 @@
                                     <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
                                 </p:selectOneRadio>
 
-                                <h:outputLabel for="city" value="País de Origen:"/>
-                                <p:selectOneMenu id="city" value="#{bean_perfilpersonal.pais}">
+                                <h:outputLabel for="pais" value="País de Origen:"/>
+                                <p:selectOneMenu id="pais" value="#{bean_perfilpersonal.pais}">
                                     <f:selectItems value="#{bean_perfilpersonal.listaPais}" var="q" itemLabel="#{q.nombrePais}" itemValue="#{q.idPais}"/>
                                 </p:selectOneMenu>
 
                                 <h:outputLabel for="dui" value="DUI"/>
-                                <p:inputMask mask="99999999-9" id='dui'  maxlength="12" value="#{bean_perfilpersonal.dui}"/>
+                                <p:inputMask mask="99999999-9" id='dui' required="true" maxlength="12" value="#{bean_perfilpersonal.dui}"/>
 
                                 <h:outputLabel for="nit" value="NIT"/>
-                                <p:inputMask mask="9999-999999-999-9" id='nit'  maxlength="20" value="#{bean_perfilpersonal.nit}"/>
+                                <p:inputMask mask="9999-999999-999-9" id='nit' required="true" maxlength="20" value="#{bean_perfilpersonal.nit}"/>
 
                                 <h:outputLabel for="pasaporte" value="*Número de pasaporte:"/>
-                                <p:inputText id='estado_civil' required="false" maxlength="11" value="#{bean_perfilpersonal.pasaporte}"/>
+                                <p:inputText id='estado_civil' required="true" maxlength="11" value="#{bean_perfilpersonal.pasaporte}"/>
 
                                 <h:outputText value="*Rellene este campo si el pais " style="font-size: 12px; margin-left: 60px; margin-top: 0px"/>
                                 <h:outputText value="de origen es diferente a El Salvador" style="font-size: 12px"/>
@@ -87,7 +86,7 @@
                                             readonlyInput="true" required="true" locale="es" navigator="true" requiredMessage="La fecha es obligatoria"
                                             pattern="dd/MM/yyyy"/>
 
-                                <h:outputLabel for="correo" value="E-mail:"/>
+                                <p:outputLabel for="correo" value="E-mail:"/>
                                 <p:inputText id="correo" required="true" maxlength="20" requiredMessage="Dirección de correo obligatoria" value="#{bean_perfilpersonal.mail}"/>
 
                                 <p:outputLabel for="rol" value="Papel que desempeña:"/>
@@ -101,37 +100,17 @@
 
                                 <!--<p:commandButton icon="ui-icon-plusthick" update="especialidad" onclick="PF('ventanaespecialidad').show();" actionListener="{bean_especialidad.mostrarusuario}"/>-->
                             </h:panelGrid>
-                        <br></br>
-                            <p:commandButton style="background-color:skyblue ; border-radius: 10px; font-size: 15px" value="Especialidad" onclick="PF('ventanaespecialidad').show();" update="form_especialidad" />
                     </p:panel>
-                    <br></br>
                     <h:form>
-                        <b:commandButton style="width:120px; height: 40px; font-size: 15px" look="primary" value="GUARDAR" action="#{bean_perfilpersonal.Insertarperfil}"/>
-                        <b:commandButton style="width:120px; height: 40px;" look="danger" value="VER PERSONAL" action="tabla_perfil_personal?faces-redirect=true"/>
-                  
+                        <h:commandButton  style="background-color:skyblue ; width:120px; height: 50px; border-radius: 10px; font-size: 20px" value="Guardar" action="#{bean_perfilpersonal.Insertarperfil}" />
                     </h:form>
-                    <br></br>
                 </h:form>
                 
-                
-                <!--MODAL PANEL PARA ELEGIR ESPECIALIDAD-->
                 <h:form>
                     <p:autoUpdate/>
                 </h:form>
                 
-                <p:dialog header="Especialidad de Usuario" widgetVar="ventanaespecialidad" modal="true" showEffect="fold" hideEffect="puff">
-                    <h:form id="form_especialidad">
-                        <p:panel id="panel_especialidad">
-                            <p:panelGrid columns="1" style=" text-align: center;">
-                                <p:outputLabel for="especialidad" value="Especialidad que posee" style="font-size: 15px; font-style: inherit;"/>
-                            <p:selectOneMenu id="especialidad" value="#">
-                                <f:selectItems value="#{bean_perfilpersonal.listaespecialidad}" var="c" itemLabel="#{c.especialidad}" itemValue="#{c.idEspecialidad}"/>
-                            </p:selectOneMenu> 
-                                <p:commandButton value="Agregar" action="#{bean_perfilpersonal.insertar_perfil_especialidad}" update="form1" onclick="PF('ventanaespecialidad').hide();"/>
-                            </p:panelGrid>
-                        </p:panel>
-                    </h:form>
-                </p:dialog>
+                
 
 
 

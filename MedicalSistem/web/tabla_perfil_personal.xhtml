@@ -21,114 +21,267 @@
             }
         </style>
 
-        </h:head>
+    </h:head>
     <h:body>
 
         <div>
             <h:form id="menuform">
-
-                <p:menubar style="border:0px; width: 100%">
+                <p:menubar style="border:0px">
                     <p:menuitem value="Inicio |" url="enfermeria.xhtml"/>
                     <p:menuitem value="Especialidades |" url="especialidades.xhtml"/>
                     <p:menuitem value="Medicamentos |" url="especialidades.xhtml"/>
                     <p:menuitem>
-                        <p:commandButton value="Nuevo Registro" action="perfilPersonal?faces-redirect=true" style="background: #d7ffff; color:#005983; border-color: #005983; margin-left: 800px"/>
+                        <p:commandButton value="Nuevo Registro" action="perfilPersonal?faces-redirect=true" style="background: #d7ffff; color:#005983; border-color: #005983; border-radius: 5px; margin-left: 1100px"/>
                     </p:menuitem>
                 </p:menubar>
             </h:form>
         </div>
 
         <!--Inicio de Tabla-->
+        <p:panel style="margin: auto; text-align: center; align-content: center;"> 
+            <h:graphicImage value="../images/logo1.png" width="80" height="80"  style="margin: auto; text-align: center; align-content: center;"/> 
+        </p:panel>
 
-        <center><h:graphicImage value="../images/logo1.png" width="80" height="80" /> </center>
-
+        <p:growl id="mensaje">
+            <p:autoUpdate/>
+        </p:growl>
 
         <h:form id="mostrarform">
             <b:dataTable var="especialidad" value="#{bean_perfilpersonal.listapersonal}" style="width: 1300px; text-align: center; margin: auto;">
+                <b:dataTableColumn value="#{especialidad.usuario}" label="usuario"/>
                 <b:dataTableColumn value="#{especialidad.primerNombre} #{especialidad.segundoNombre} #{especialidad.tercerNombre}" label="Nombres"/>
                 <b:dataTableColumn value="#{especialidad.primerApellido} #{especialidad.segundoApellido} #{especialidad.tercerApellido}" label="Apellidos"/>
                 <b:dataTableColumn value="#{especialidad.rol.rol}" label="Rol"/>
                 <b:dataTableColumn value="#{especialidad.estado.estado}" label="estado"/>
                 <b:dataTableColumn value="#{especialidad.celular} // #{especialidad.telefono}" />
                 <b:dataTableColumn label="Accion">
-                    <p:commandButton value="Actualizar" actionListener="#{bean_perfilpersonal.mostrarporusuario(especialidad.usuario)}" onclick="PF('actualizar').show();" />
+                    <p:menuButton value="Options">
+                        <p:menuitem value="Actualizar" actionListener="#{bean_perfilpersonal.mostrarporusuario(especialidad.usuario)}" onclick="PF('actualizar').show();" update="actualizarform"  icon="ui-icon-pencil"/>
+                        <p:menuitem value="ver detalles" actionListener="#{bean_perfilpersonal.mostrarporusuario(especialidad.usuario)}" onclick="PF('detalles').show();" update="detallesform" icon="ui-icon-note"/>
+                        <p:menuitem value="ver especialidades" actionListener="#{bean_perfilpersonal.mostrarEspecialidades(especialidad.usuario)}" onclick="PF('especialidades').show();" update="especialidadesform" icon="ui-icon-folder-collapsed"/>
+                    </p:menuButton>
+
                 </b:dataTableColumn>
             </b:dataTable>
         </h:form>
         <p:dialog  header="actualizar" widgetVar="actualizar" modal="true" showEffect="drop" hideEffect="slide"  draggable="false" resizable="false">
-            <h:form id="actualizarform">
-                <h:panelGrid columns="2">
-                    
-                    <p:inputText id="usuarioperfil" type="hidden" style="border-radius: 8px;" value="#{bean_perfilpersonal.usuario}"/>   
-                    <p:inputText id="espacio1" type="hidden" style="border-radius: 8px;" value="espacio"/>   
-                    
-                    
-                    <p:outputLabel for="password"                               value="Password"/>
-                    <p:inputText id="password"  style="border-radius: 8px;" value="#{bean_perfilpersonal.pass}"/>
-                    
-                    <p:outputLabel for="nombre1"                                value="Primer Nombre"/>
-                    <p:inputText id="nombre1"  style="border-radius: 8px;" value="#{bean_perfilpersonal.primerNombre}"/>
+            <h:form id="actualizarform" style="text-align: center; margin: auto;">
+                <h:panelGrid columns="2" >
 
-                    <p:outputLabel for="nombre2"  style="border-radius: 8px;"    value="Segundo Nombre"/>   
-                    <p:inputText id="nombre2"  style="border-radius: 8px;" value="#{bean_perfilpersonal.segundoNombre}"/>
+                    <h:panelGrid columns="2" >    
+                        <p:inputText id="usuarioperfil" type="hidden" style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.usuario}"/>   
+                        <p:inputText id="espacio1" type="hidden" style="border-radius: 8px; padding: 8px;" value="espacio"/>   
 
-                    <p:outputLabel for="nombre3"  style="border-radius: 8px;"   value="Tercer Nombre"/>   
-                    <p:inputText id="nombre3"  style="border-radius: 8px;" value="#{bean_perfilpersonal.tercerNombre}"/>
+                        <p:outputLabel for="password"                               value="Password"/>
+                        <p:inputText id="password"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.pass}"/>
 
-                    <p:outputLabel for="apellido1"  style="border-radius: 8px;" value="Primer Apellido"/>   
-                    <p:inputText id="apellido1"  style="border-radius: 8px;" value="#{bean_perfilpersonal.primerApellido}"/>  
+                        <p:outputLabel for="nombre1"                                value="Primer Nombre"/>
+                        <p:inputText id="nombre1"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.primerNombre}"/>
 
-                    <p:outputLabel for="apellido2"  style="border-radius: 8px;" value="Segundo Apellido"/>                          
-                    <p:inputText id="apellido2"  style="border-radius: 8px;" value="#{bean_perfilpersonal.segundoApellido}"/>
+                        <p:outputLabel for="nombre2"  style="border-radius: 8px; padding: 8px;"    value="Segundo Nombre"/>   
+                        <p:inputText id="nombre2"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.segundoNombre}"/>
 
-                    <p:outputLabel for="apellido3"  style="border-radius: 8px;" value="Tercer Apellido"/>                          
-                    <p:inputText id="apellido3"  style="border-radius: 8px;" value="#{bean_perfilpersonal.tercerApellido}"/> 
+                        <p:outputLabel for="nombre3"  style="border-radius: 8px; padding: 8px;"   value="Tercer Nombre"/>   
+                        <p:inputText id="nombre3"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.tercerNombre}"/>
 
+                        <p:outputLabel for="apellido1"  style="border-radius: 8px; padding: 8px;" value="Primer Apellido"/>   
+                        <p:inputText id="apellido1"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.primerApellido}"/>  
 
-                    <p:outputLabel for="edad"  style="border-radius: 8px;" value="Edad"/>                          
-                    <p:inputText id="edad"  style="border-radius: 8px;" value="#{bean_perfilpersonal.edad}"/>   
+                        <p:outputLabel for="apellido2"  style="border-radius: 8px; padding: 8px;" value="Segundo Apellido"/>                          
+                        <p:inputText id="apellido2"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.segundoApellido}"/>
 
-                    <p:outputLabel for="sexo"  style="border-radius: 8px;" value="Sexo"/>                           
-                    <p:inputText id="sexo"  style="border-radius: 8px;" value="#{bean_perfilpersonal.sexo}"/>   
+                        <p:outputLabel for="apellido3"  style="border-radius: 8px; padding: 8px;" value="Tercer Apellido"/>                          
+                        <p:inputText id="apellido3"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.tercerApellido}"/> 
 
-                    <p:outputLabel for="pais"  style="border-radius: 8px;" value="Pais"/>                           
-                    <p:inputText id="pais"  style="border-radius: 8px;" value="#{bean_perfilpersonal.pais}"/>   
+                        <p:outputLabel for="edad"  style="border-radius: 8px; padding: 8px;" value="Edad"/>                          
+                        <p:inputText id="edad" style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.edad}"/>   
 
-                    <p:outputLabel for="dui"  style="border-radius: 8px;" value="DUI"/>                          
-                    <p:inputText id="dui"  style="border-radius: 8px;" value="#{bean_perfilpersonal.dui}"/>   
+                        <h:outputLabel for="sexo" value="Sexo:" style="width:150px"/>
+                        <p:selectOneRadio id="sexo" value="#{bean_perfilpersonal.sexo}">
+                            <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                            <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                        </p:selectOneRadio>  
 
-                    <p:outputLabel for="nit"  style="border-radius: 8px;" value="NIT"/>                           
-                    <p:inputText id="nit"  style="border-radius: 8px;" value="#{bean_perfilpersonal.nit}"/>   
+                        <p:outputLabel for="pais"  style="border-radius: 8px; padding: 8px;" value="Pais"/>                           
+                        <p:selectOneMenu id="pais" value="#{bean_perfilpersonal.pais}">
+                            <f:selectItems value="#{bean_perfilpersonal.listaPais}" var="q" itemLabel="#{q.nombrePais}" itemValue="#{q.idPais}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
 
-                    <p:outputLabel for="pasaporte"  style="border-radius: 8px;" value="Pasaporte"/>   
-                    <p:inputText id="pasaporte"  style="border-radius: 8px;" value="#{bean_perfilpersonal.pasaporte}"/>   
+                    <h:panelGrid columns="2" >
+                        <p:outputLabel for="dui"  style="border-radius: 8px; padding: 8px;" value="DUI"/>                          
+                        <p:inputMask  mask="99999999-9" id="dui"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.dui}"/>   
 
-                    <p:outputLabel for="direccion"  style="border-radius: 8px;" value="Direccion"/>   
-                    <p:inputText id="direccion"  style="border-radius: 8px;" value="#{bean_perfilpersonal.direccion}"/>   
+                        <p:outputLabel for="nit"  style="border-radius: 8px; padding: 8px;" value="NIT"/>                           
+                        <p:inputMask mask="9999-999999-999-9" id="nit"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.nit}"/>   
 
-                    <p:outputLabel for="telefono"  style="border-radius: 8px;" value="Telefono"/>                 
-                    <p:inputText id="telefono"  style="border-radius: 8px;" value="#{bean_perfilpersonal.telefono}"/>   
+                        <p:outputLabel for="pasaporte"  style="border-radius: 8px; padding: 8px;" value="Pasaporte"/>   
+                        <p:inputText id="pasaporte"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.pasaporte}"/>   
 
-                    <p:outputLabel for="celular"  style="border-radius: 8px;" value="Celular"/>                           
-                    <p:inputText id="celular"  style="border-radius: 8px;" value="#{bean_perfilpersonal.celular}"/>   
+                        <p:outputLabel for="direccion"  style="border-radius: 8px; padding: 8px;" value="Direccion"/>   
+                        <p:inputText id="direccion"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.direccion}"/>   
 
-                    <p:outputLabel for="rol"  style="border-radius: 8px;" value="Rol"/>                          
-                    <p:inputText id="rol"  style="border-radius: 8px;" value="#{bean_perfilpersonal.rol}"/>   
+                        <p:outputLabel for="telefono"  style="border-radius: 8px; padding: 8px;" value="Telefono"/>                 
+                        <p:inputText id="telefono"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.telefono}"/>   
 
-                    <p:outputLabel for="fecha_contratacion"  style="border-radius: 8px;" value="Fecha de contratacion"/>   
-                    <p:inputText id="fecha_contratacion"  style="border-radius: 8px;" value="#{bean_perfilpersonal.fechaDeContratacion}"/>   
+                        <p:outputLabel for="celular"  style="border-radius: 8px; padding: 8px;" value="Celular"/>                           
+                        <p:inputText id="celular"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.celular}"/>   
 
-                    <p:outputLabel for="email"  style="border-radius: 8px;" value="E-mail"/>                          
-                    <p:inputText id="email"  style="border-radius: 8px;" value="#{bean_perfilpersonal.mail}"/>   
+                        <p:outputLabel for="rol"  style="border-radius: 8px; padding: 8px;" value="Rol"/>                          
+                        <p:selectOneMenu id="rol" value="#{bean_perfilpersonal.rol}">
+                            <f:selectItems value="#{bean_perfilpersonal.listarol}" var="c" itemLabel="#{c.rol}" itemValue="#{c.idRol}" />
+                        </p:selectOneMenu>
 
-                    <p:outputLabel for="estado"  style="border-radius: 8px;" value="estado"/>                      
-                    <p:inputText id="estado"  style="border-radius: 8px;" value="#{bean_perfilpersonal.estado}"/> 
-                    
+                        <p:inputText id="espacio2" type="hidden" style="border-radius: 8px; padding: 8px;" value="espacio"/>   
+                        <p:calendar id="fecha_contratacion" value="#{bean_perfilpersonal.fecha}" showOn="button"
+                                    readonlyInput="true" required="true" locale="es" navigator="true" requiredMessage="La fecha es obligatoria"
+                                    pattern="dd/MM/yyyy" type="hidden" />
+
+                        <p:outputLabel for="email"  style="border-radius: 8px; padding: 8px;" value="E-mail"/>                          
+                        <p:inputText id="email"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.mail}"/>   
+
+                        <p:outputLabel for="estado"  style="border-radius: 8px; padding: 8px;" value="estado"/>                      
+                        <p:selectOneMenu id="estado" value="#{bean_perfilpersonal.estado}">
+                            <f:selectItems value="#{bean_perfilpersonal.listaestado}" var="e" itemLabel="#{e.estado}" itemValue="#{e.idEstado}" />
+                        </p:selectOneMenu> 
+                    </h:panelGrid>
                 </h:panelGrid>
-                <p:commandButton action="#" value="Actualizar" style="margin: auto; text-align: center;"/>
+                <p:commandButton action="#{bean_perfilpersonal.actualizar_personal()}" value="Actualizar" style="margin: auto; text-align: center;" update="mostrarform" onclick="PF('actualizar').hide();"/>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog  header="Detalles" widgetVar="detalles" modal="true" showEffect="drop" hideEffect="slide"  draggable="false" resizable="false">
+            <h:form id="detallesform" style="text-align: center; margin: auto;">
+                <h:panelGrid columns="2" >
+
+                    <h:panelGrid columns="2" >    
+
+                        <p:outputLabel id="espacio1"  style="border-radius: 8px; padding: 8px;" value="Usuario"/>   
+                        <p:outputLabel id="usuarioperfil"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.usuario}"/>   
+
+
+                        <p:outputLabel for="password"                                               value="Password"/>
+                        <p:outputLabel id="password"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.pass}"/>
+
+                        <p:outputLabel for="nombre1"                                                value="Primer Nombre"/>
+                        <p:outputLabel id="nombre1"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.primerNombre}"/>
+
+                        <p:outputLabel for="nombre2"  style="border-radius: 8px; padding: 8px;"     value="Segundo Nombre"/>   
+                        <p:outputLabel id="nombre2"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.segundoNombre}"/>
+
+                        <p:outputLabel for="nombre3"  style="border-radius: 8px; padding: 8px;"     value="Tercer Nombre"/>   
+                        <p:outputLabel id="nombre3"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.tercerNombre}"/>
+
+                        <p:outputLabel for="apellido1"  style="border-radius: 8px; padding: 8px;"   value="Primer Apellido"/>   
+                        <p:outputLabel id="apellido1"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.primerApellido}"/>  
+
+                        <p:outputLabel for="apellido2"  style="border-radius: 8px; padding: 8px;"   value="Segundo Apellido"/>                          
+                        <p:outputLabel id="apellido2"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.segundoApellido}"/>
+
+                        <p:outputLabel for="apellido3"  style="border-radius: 8px; padding: 8px;"   value="Tercer Apellido"/>                          
+                        <p:outputLabel id="apellido3"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.tercerApellido}"/> 
+
+                        <p:outputLabel for="edad"  style="border-radius: 8px; padding: 8px;"        value="Edad"/>                          
+                        <p:outputLabel id="edad" style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.edad}"/>   
+
+                        <h:outputLabel for="sexo" value="Sexo:" style="width:150px"/>
+                        <h:outputLabel id="sexo" value="#{bean_perfilpersonal.sexo}" style="width:150px"/>
+
+
+                        <p:outputLabel for="pais"  style="border-radius: 8px; padding: 8px;" value="Pais"/>                           
+                        <p:outputLabel id="pais"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.paisnombre}"/>   
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="2" >
+                        <p:outputLabel for="dui"  style="border-radius: 8px; padding: 8px;" value="DUI"/>                          
+                        <p:outputLabel id="dui"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.dui}"/>   
+
+                        <p:outputLabel for="nit"  style="border-radius: 8px; padding: 8px;" value="NIT"/>                           
+                        <p:outputLabel id="nit"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.nit}"/>   
+
+                        <p:outputLabel for="pasaporte"  style="border-radius: 8px; padding: 8px;" value="Pasaporte"/>   
+                        <p:outputLabel id="pasaporte"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.pasaporte}"/>   
+
+                        <p:outputLabel for="direccion"  style="border-radius: 8px; padding: 8px;" value="Direccion"/>   
+                        <p:outputLabel id="direccion"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.direccion}"/>   
+
+                        <p:outputLabel for="telefono"  style="border-radius: 8px; padding: 8px;" value="Telefono"/>                 
+                        <p:outputLabel id="telefono"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.telefono}"/>   
+
+                        <p:outputLabel for="celular"  style="border-radius: 8px; padding: 8px;" value="Celular"/>                           
+                        <p:outputLabel id="celular"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.celular}"/>   
+
+                        <p:outputLabel for="rol"  style="border-radius: 8px; padding: 8px;" value="Rol"/>                          
+                        <p:outputLabel id="rol" value="#{bean_perfilpersonal.rolnombre}" />
+
+                        <p:outputLabel for="fecha"  style="border-radius: 8px; padding: 8px;" value="Fecha de Contratacion"/>            
+                        <h:outputText id="fecha" value="#{bean_perfilpersonal.fecha}"  >
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+
+                        <p:outputLabel for="email"  style="border-radius: 8px; padding: 8px;" value="E-mail"/>                          
+                        <p:outputLabel id="email"  style="border-radius: 8px; padding: 8px;" value="#{bean_perfilpersonal.mail}"/>   
+
+                        <p:outputLabel for="estado"  style="border-radius: 8px; padding: 8px;" value="estado"/>                      
+                        <p:outputLabel id="estado" value="#{bean_perfilpersonal.estado}"/>
+
+                    </h:panelGrid>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Especialidad de Usuario" widgetVar="especialidades" modal="true" showEffect="fold" hideEffect="puff" >
+
+            <h:form id="especialidadesform">
+                <p:outputLabel  value="Medico  " />
+                <h:outputText value="#{bean_perfilpersonal.nombreDoc}"/>
+                <p:separator/>
+
+                <p:inputText value="#{bean_perfilpersonal.usuario}" type="hidden"/>
+                <h:dataTable value="#{bean_perfilpersonal.es}" var="es" style="width: 350px" >
+                    <h:column >
+                        <p:outputLabel value="#{es.especialidad.especialidad}" />
+                    </h:column>
+                </h:dataTable>
+                <!--                    <h:column >
+                                        <h:commandButton value="Eliminar" action="#" actionListener="{bean_perfilpersonal.eliminar(es.especialidad.idEspecialidad)}"/>
+                                    </h:column>
+                
+                         <p:dataTable id="inner" var="especialidad"  value="{bean_perfilpersonal.es}" style="width: 350px" rowKey="{especialidad.especialidad.idEspecialidad}"
+                                             selection="{bean_perfilpersonal.li}" selectionMode="single">
+                                    <p:column headerText="Especialidades">
+                                        <p:outputLabel value="{especialidad.especialidad.especialidad}"/>
+                                    </p:column>
+                                    <p:column headerText="Eliminar">
+                                        <p:commandButton value="Eliminar" action="" />
+                                    </p:column>
+                                </p:dataTable>
+                           <p:contextMenu for="inner">
+                                    <p:menuitem value="Delete" actionListener=""/>
+                                </p:contextMenu>-->
+
+                <p:separator/>
+
+                <p:commandButton icon="ui-icon-plus" value="Agregar Una buena especialidad" style="width: 100%; color: white; background-image: none; background-color: #163758; " class="pi pi-check" action="#{bean_perfilpersonal.nohaynecesidadperoporsiacaso()}" onclick="PF('especialidadesa').show(); PF('especialidades').hide();"  update="agregarespecialidad" />
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Agregar especialidad" widgetVar="especialidadesa" modal="true" showEffect="fold" hideEffect="puff"> 
+            <h:form id="agregarespecialidad">
+                <p:inputText value="#{bean_perfilpersonal.usuario}" type="hidden"/>
+                <p:outputLabel value="#{bean_perfilpersonal.nombreDoc}"/>
+                <p:separator/>
+                <h:outputLabel for="especialidades" value="Especialidades:" />
+                <p:selectOneMenu id="especialidades" value="#{bean_perfilpersonal.especialidad}" label="especialidades" filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                    <f:selectItems value="#{bean_perfilpersonal.listaespecialidad}" var="e"  itemLabel="#{e.especialidad}" itemValue="#{e.idEspecialidad}"/>
+                </p:selectOneMenu>
+                <p:separator/>
+                <p:commandButton value="Agregar" style="width: 100%" actionListener="#{bean_perfilpersonal.vincularpersonalespecialidad()}" update="especialidadesform" icon="ui-icon-plus" onclick="PF('especialidadesa').hide();" />
             </h:form>
         </p:dialog>
 
 
     </h:body>
+
+
 </html>
