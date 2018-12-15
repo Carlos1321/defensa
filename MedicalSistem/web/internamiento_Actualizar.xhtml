@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Internamiento</title>
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <style type="text/css">
+            .fon{
+                background: url(../images/fondo1.jpg);
+                background-repeat: no-repeat;
+                background-size: 100%;
+                
+            }
+            .p{
+                width: 550px;
+                height: 530px;
+                
+            }
+            
+        </style>
+        
+    </h:head>
+    <h:body class="fon">
+        <center>
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br><br></br>
+            
+        <h:form>
+            <p:panel class="p">
+                <br></br>
+       <h:graphicImage value="../images/logo1.png" width="120" height="120" />
+                 <br></br><br></br>
+                  <h:panelGrid columns="2" cellspacing="3" class="table-condensed" id="panel">
+                    <h:outputLabel for="habitación" value="Habitación:"/>
+                    <p:commandButton value="Actualizar" type="button" onclick="PF('hab').show()"/>
+                    
+                    <h:outputLabel for="id_habitacion" value="Codigo de Habitación:"/>
+                    <h:outputLabel for="id_habitacion" value="#" />
+                    
+                    <h:outputLabel for="numero_de_cama" value="Número de Cama:"/>
+                    <p:inputText id='numero_cama' required="true" maxlength="5"/>
+                    
+                    <h:outputLabel for="hora_ingreso" value="Hora de Ingreso:"/>
+                    <p:inputText id='hora_ingreso' required="true" maxlength="10" readonly="true" />
+                    
+                    <h:outputLabel for="fecha_ingreso" value="Fecha de Ingreso:"/>
+                    <p:inputText id='fecha_ingreso' required="true" maxlength="10" readonly="true"  />
+                    
+                    
+                    <h:outputLabel for="hora_alta" value="Hora de Alta:"/>
+                    <p:inputText id='hora_alta' required="true" maxlength="10"  />
+                    
+                    <h:outputLabel for="fecha_alta" value="Fecha de Alta:"/>
+                    <p:calendar id="fecha_alta" value="#{beanPerfilPersonal.fechaNacimiento}" showOn="button"
+                                readonlyInput="true" required="true" locale="es" navigator="true" requiredMessage="La fecha es obligatoria"
+                                pattern="dd/MM/yyyy"/>
+                    
+                  </h:panelGrid>
+                 <br></br>
+                 <center><p:commandButton value="Ingresar Datos" action="enfermeria?faces-redirect=true"/></center> 
+            </p:panel>
+        </h:form>  
+        </center>
+        
+          <!-- Inicio de Model panel para llenar información de habitación-->
+        <div>
+        <p:dialog style="border: 0px" widgetVar="hab" modal="true" height="450" width="350"  >
+        <h:form>
+            <p:growl id="msg"></p:growl>
+        <center>
+                   <br></br>
+                <h:graphicImage value="../images/logo1.png" width="120" height="120" />
+                 <br></br><br></br>
+                  <h:panelGrid columns="1" cellspacing="3" class="table-condensed" id="panel">
+                     
+                     <h:outputLabel for="numero_habitacion" value="Número de Habitación:"/>
+                     <p:selectOneMenu id="numero_habitacion" value="#{rolView.console}">
+                        <f:selectItem itemLabel="Seleccione..." itemValue="0"/>
+                     </p:selectOneMenu>
+                    
+                    <h:outputLabel for="area" value="Área"/>
+                    <p:selectOneMenu id="area" value="#{rolView.console}">
+                        <f:selectItem itemLabel="Seleccione..." itemValue="0"/>
+                     </p:selectOneMenu>
+                       
+                    <h:outputLabel for="tipo_habitacion" value="Tipo de habitación:"/>
+                    <p:selectOneMenu id="tipo_habitacion" value="#{rolView.console}">
+                     <f:selectItem itemLabel="Seleccione..." itemValue="0"/> 
+                    </p:selectOneMenu>
+                      
+                 </h:panelGrid>
+            <br></br>
+            <p:commandButton  value="Guardar" update="msg,panel" actionListener="#" style="border-radius: 7px"/>
+        </center>
+            </h:form> 
+        </p:dialog>
+        </div>
+    </h:body>
+</html>
+

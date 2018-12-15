@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Admin</title>
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <style>
+            .logo{
+                width: 300px;
+                height: 90px;
+            }
+            .aling{
+                margin-left: 950px;
+                margin-right: 30px;
+                border-radius: 5px;
+                background: #eaffff;
+                border-color: #0d6aad;
+                width: 260px;
+                height: 40px;
+            }
+             
+            .b{
+                border-radius: 7px;
+                border-color: #005983;
+                background: #005983;
+                color: white;
+                    
+            }
+            
+            .value {
+                font-weight: bold;
+            }
+     
+            .ui-carousel {
+                 margin-bottom:5px;
+            }
+            
+            
+        </style>
+    </h:head>
+    <h:body>
+        <br></br>
+        <center><h:graphicImage value="../images/logo.png" class="logo"/></center>
+        <br></br>
+        
+        <!--Inicio de barra de menu -->
+        
+        <p:menubar style="border:0px">
+    <p:menuitem value="Inicio |" url="admin.xhtml"/>
+    <p:menuitem value="Acerca de Nosotros" url="#"/>
+    <p:menuitem value="| Actualizar Perfil" url="perfilMedico.xhtml" class="aling"/>
+    </p:menubar>
+        
+        <center><h:graphicImage value="../images/login2.jpg" style="width: 1200px; height: 400px"/></center>
+        
+        
+        <!--Pie de pagina -->
+        <br></br>
+        <center>
+            <h:form>
+        <p:panelGrid columns="4" style="border: 0px; width:85%; height: 100px">
+            <p:panel style="border: 0px;">
+                 <center> 
+                    <h:graphicImage value="../images/personal.png" style="width: 150px; height: 140px"/><br></br><br></br>
+                    <h:commandButton value="Ver Personal" action="tabla_perfil_personal?faces-redirect=true" class="b"/></center>
+            </p:panel>
+            
+            <p:panel style="border: 0px;">
+                 <center> 
+                    <h:graphicImage value="../images/log.png" style="width: 160px; height: 150px"/><br></br><br></br>
+                    <h:commandButton value="Nuevo Personal" type="button" class="b"/></center>
+            </p:panel>
+            
+            <p:panel style="border: 0px;">
+                 <center> 
+                    <h:graphicImage value="../images/exam.png" style="width: 150px; height: 150px"/><br></br><br></br>
+                    <h:commandButton value="Examenes"  action="tabla_examenesAdmin?faces-redirect=true" class="b"/></center>
+            </p:panel>
+            
+            <p:panel style="border: 0px; ">
+                <center>
+                    <h:graphicImage value="../images/log7.png" style="width: 150px; height: 150px"/><br></br><br></br>
+                    <h:commandButton value="Medicamentos" action="medicamentosAdmin?faces-redirect=true" class="b"/></center>
+            </p:panel>
+            
+        </p:panelGrid>
+            </h:form>
+        </center>
+        
+       
+         
+    </h:body>
+     <!-- /. FOOTER  -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="../js/jquery-1.10.2.js"></script>
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="../js/bootstrap.js"></script>
+        <!-- METISMENU SCRIPTS -->
+        <script src="../js/jquery.metisMenu.js"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="../js/custom.js"></script>
+</html>
+

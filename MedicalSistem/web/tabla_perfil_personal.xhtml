@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Tabla de Personal</title>
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+
+        <style type="text/css">
+            .boton{
+                background: #006699;
+                border-color: #005983;
+                color: white;
+                border-radius: 5px;
+                height: 35px;
+                width: 115px;
+            }
+        </style>
+
+        </h:head>
+    <h:body>
+
+        <div>
+            <h:form id="menuform">
+
+                <p:menubar style="border:0px; width: 100%">
+                    <p:menuitem value="Inicio |" url="enfermeria.xhtml"/>
+                    <p:menuitem value="Especialidades |" url="especialidades.xhtml"/>
+                    <p:menuitem value="Medicamentos |" url="especialidades.xhtml"/>
+                    <p:menuitem>
+                        <p:commandButton value="Nuevo Registro" action="perfilPersonal?faces-redirect=true" style="background: #d7ffff; color:#005983; border-color: #005983; margin-left: 800px"/>
+                    </p:menuitem>
+                </p:menubar>
+            </h:form>
+        </div>
+
+        <!--Inicio de Tabla-->
+
+        <center><h:graphicImage value="../images/logo1.png" width="80" height="80" /> </center>
+
+
+        <h:form id="mostrarform">
+            <b:dataTable var="especialidad" value="#{bean_perfilpersonal.listapersonal}" style="width: 1300px; text-align: center; margin: auto;">
+                <b:dataTableColumn value="#{especialidad.primerNombre} #{especialidad.segundoNombre} #{especialidad.tercerNombre}" label="Nombres"/>
+                <b:dataTableColumn value="#{especialidad.primerApellido} #{especialidad.segundoApellido} #{especialidad.tercerApellido}" label="Apellidos"/>
+                <b:dataTableColumn value="#{especialidad.rol.rol}" label="Rol"/>
+                <b:dataTableColumn value="#{especialidad.estado.estado}" label="estado"/>
+                <b:dataTableColumn value="#{especialidad.celular} // #{especialidad.telefono}" />
+                <b:dataTableColumn label="Accion">
+                    <p:commandButton value="Actualizar" actionListener="#{bean_perfilpersonal.mostrarporusuario(especialidad.usuario)}" onclick="PF('actualizar').show();" />
+                </b:dataTableColumn>
+            </b:dataTable>
+        </h:form>
+        <p:dialog  header="actualizar" widgetVar="actualizar" modal="true" showEffect="drop" hideEffect="slide"  draggable="false" resizable="false">
+            <h:form id="actualizarform">
+                <h:panelGrid columns="2">
+                    
+                    <p:inputText id="usuarioperfil" type="hidden" style="border-radius: 8px;" value="#{bean_perfilpersonal.usuario}"/>   
+                    <p:inputText id="espacio1" type="hidden" style="border-radius: 8px;" value="espacio"/>   
+                    
+                    
+                    <p:outputLabel for="password"                               value="Password"/>
+                    <p:inputText id="password"  style="border-radius: 8px;" value="#{bean_perfilpersonal.pass}"/>
+                    
+                    <p:outputLabel for="nombre1"                                value="Primer Nombre"/>
+                    <p:inputText id="nombre1"  style="border-radius: 8px;" value="#{bean_perfilpersonal.primerNombre}"/>
+
+                    <p:outputLabel for="nombre2"  style="border-radius: 8px;"    value="Segundo Nombre"/>   
+                    <p:inputText id="nombre2"  style="border-radius: 8px;" value="#{bean_perfilpersonal.segundoNombre}"/>
+
+                    <p:outputLabel for="nombre3"  style="border-radius: 8px;"   value="Tercer Nombre"/>   
+                    <p:inputText id="nombre3"  style="border-radius: 8px;" value="#{bean_perfilpersonal.tercerNombre}"/>
+
+                    <p:outputLabel for="apellido1"  style="border-radius: 8px;" value="Primer Apellido"/>   
+                    <p:inputText id="apellido1"  style="border-radius: 8px;" value="#{bean_perfilpersonal.primerApellido}"/>  
+
+                    <p:outputLabel for="apellido2"  style="border-radius: 8px;" value="Segundo Apellido"/>                          
+                    <p:inputText id="apellido2"  style="border-radius: 8px;" value="#{bean_perfilpersonal.segundoApellido}"/>
+
+                    <p:outputLabel for="apellido3"  style="border-radius: 8px;" value="Tercer Apellido"/>                          
+                    <p:inputText id="apellido3"  style="border-radius: 8px;" value="#{bean_perfilpersonal.tercerApellido}"/> 
+
+
+                    <p:outputLabel for="edad"  style="border-radius: 8px;" value="Edad"/>                          
+                    <p:inputText id="edad"  style="border-radius: 8px;" value="#{bean_perfilpersonal.edad}"/>   
+
+                    <p:outputLabel for="sexo"  style="border-radius: 8px;" value="Sexo"/>                           
+                    <p:inputText id="sexo"  style="border-radius: 8px;" value="#{bean_perfilpersonal.sexo}"/>   
+
+                    <p:outputLabel for="pais"  style="border-radius: 8px;" value="Pais"/>                           
+                    <p:inputText id="pais"  style="border-radius: 8px;" value="#{bean_perfilpersonal.pais}"/>   
+
+                    <p:outputLabel for="dui"  style="border-radius: 8px;" value="DUI"/>                          
+                    <p:inputText id="dui"  style="border-radius: 8px;" value="#{bean_perfilpersonal.dui}"/>   
+
+                    <p:outputLabel for="nit"  style="border-radius: 8px;" value="NIT"/>                           
+                    <p:inputText id="nit"  style="border-radius: 8px;" value="#{bean_perfilpersonal.nit}"/>   
+
+                    <p:outputLabel for="pasaporte"  style="border-radius: 8px;" value="Pasaporte"/>   
+                    <p:inputText id="pasaporte"  style="border-radius: 8px;" value="#{bean_perfilpersonal.pasaporte}"/>   
+
+                    <p:outputLabel for="direccion"  style="border-radius: 8px;" value="Direccion"/>   
+                    <p:inputText id="direccion"  style="border-radius: 8px;" value="#{bean_perfilpersonal.direccion}"/>   
+
+                    <p:outputLabel for="telefono"  style="border-radius: 8px;" value="Telefono"/>                 
+                    <p:inputText id="telefono"  style="border-radius: 8px;" value="#{bean_perfilpersonal.telefono}"/>   
+
+                    <p:outputLabel for="celular"  style="border-radius: 8px;" value="Celular"/>                           
+                    <p:inputText id="celular"  style="border-radius: 8px;" value="#{bean_perfilpersonal.celular}"/>   
+
+                    <p:outputLabel for="rol"  style="border-radius: 8px;" value="Rol"/>                          
+                    <p:inputText id="rol"  style="border-radius: 8px;" value="#{bean_perfilpersonal.rol}"/>   
+
+                    <p:outputLabel for="fecha_contratacion"  style="border-radius: 8px;" value="Fecha de contratacion"/>   
+                    <p:inputText id="fecha_contratacion"  style="border-radius: 8px;" value="#{bean_perfilpersonal.fechaDeContratacion}"/>   
+
+                    <p:outputLabel for="email"  style="border-radius: 8px;" value="E-mail"/>                          
+                    <p:inputText id="email"  style="border-radius: 8px;" value="#{bean_perfilpersonal.mail}"/>   
+
+                    <p:outputLabel for="estado"  style="border-radius: 8px;" value="estado"/>                      
+                    <p:inputText id="estado"  style="border-radius: 8px;" value="#{bean_perfilpersonal.estado}"/> 
+                    
+                </h:panelGrid>
+                <p:commandButton action="#" value="Actualizar" style="margin: auto; text-align: center;"/>
+            </h:form>
+        </p:dialog>
+
+
+    </h:body>
+</html>

@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Perfil Medico</title>
+        
+         <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <style type="text/css">
+             .bod{
+                background-image: url(../images/fondo.jpg);
+                background-size: 100%;
+                background-repeat: no-repeat;  
+            }
+        </style>
+               
+               
+    </h:head>
+    
+    <h:body class="bod">
+        
+       <br></br>
+       
+       
+         <p:menubar style="border:0px">
+            <p:menuitem value="Inicio |" url="#"/>
+            <p:menuitem value="Medicamentos |" url="medicamentos.xhtml"/>
+            <p:menuitem value="Especialidades |" url="especialidades.xhtml"/>
+            <p:menuitem >
+              <h:graphicImage value="../images/log3.png" width="35" height="35"/>
+            </p:menuitem>
+         </p:menubar>
+       
+         <br></br><br></br> <br></br><br></br>
+         
+        <center> 
+            <h:form>
+            <p:tabView orientation="left" style="width: 830px; height: 400px">
+                <p:tab title="Nombre">                    
+            <h:panelGrid columns="2" cellpadding="10">
+                    <h:outputLabel for="primer_nombre" value="Primer Nombre"/>
+                    <p:inputText id='primer_nombre' required="true" maxlength="15" requiredMessage="Primer nombre obligatorio"/>
+                            
+                    <h:outputLabel for="segundo_nombre" value="Segundo Nombre"/>
+                    <p:inputText id='segundo_nombre' required="true" maxlength="15" />
+                      
+                    <h:outputLabel for="tercer_nombre" value="Tercer Nombre"/>
+                    <p:inputText id='tercer_nombre' required="true" maxlength="15"/> 
+                         
+                    <h:outputLabel for="primer_apellido" value="Primer Apellido" />
+                    <p:inputText id='primer_apellido' required="true" maxlength="15" requiredMessage="Primer apellido obligatorio"/>
+                    
+                    <h:outputLabel for="segundo_apellido" value="Segundo Apellido"/>
+                    <p:inputText id='segundo_apellido' required="true" maxlength="15"/>
+                    
+                    <h:outputLabel for="tercer_apellido" value="Tercer Apellido"/>
+                    <p:inputText id='tercer_apellido' required="true" maxlength="15"/>
+                 
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Información Basica">
+            <h:panelGrid columns="2" cellpadding="10">
+                    <h:outputLabel for="sexo" value="Sexo:" style="width:150px"/>
+                    <p:inputText id='sexo' required="true" maxlength="15" readonly=""/>
+                    
+                    <h:outputLabel for="city" value="País de Origen:"/>
+                    <p:inputText id='city' required="true" maxlength="15" readonly="" />
+                    
+                    <h:outputLabel for="dui" value="DUI"/>
+                    <p:inputMask mask="99999999-9" id='dui' required="true" maxlength="15" readonly=""/>
+                    
+                    <h:outputLabel for="nit" value="NIT"/>
+                    <p:inputMask mask="9999-999999-999-9" id='nit' required="true" maxlength="10" readonly=""/>
+                   
+                    <h:outputLabel for="pasaporte" value="Número de pasaporte:"/>
+                    <p:inputText id='pasaporte' required="true" maxlength="11" readonly=""/>   
+                    
+                    <h:outputLabel for="direccion" value="Dirección"/>
+                    <p:inputText id='direccion' required="true" maxlength="15"/>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Información Tecnica">
+            <h:panelGrid columns="2" cellpadding="10">
+                   
+                    <h:outputLabel for="telefono" value="Telefono"/>
+                    <p:inputMask mask="9999-9999" id='telefono' required="true" maxlength="10" requiredMessage="Telefono obligatorio"/>
+                    
+                    <h:outputLabel for="celular" value="Celular"/>
+                    <p:inputMask mask="9999-9999" id='celular' required="true" maxlength="10" requiredMessage="Celular obligatorio"/>
+                     
+                    <h:outputLabel for="fecha_contrato" value="Fecha de Contratación"/>
+                    <p:inputText id='fecha_contrato' required="true" maxlength="15" readonly=""/>
+                    
+                    <h:outputLabel for="correo" value="E-mail"/>
+                    <p:inputText id="correo" required="true" maxlength="20" requiredMessage="Dirección de correo obligatoria"/>
+                   
+                    <h:outputLabel for="rol" value="Papel que desempeña:"/>
+                    <p:inputText id='rol' required="true" maxlength="15" readonly=""/>
+                    
+                    <h:outputLabel for="Especialidad" value="Especialidad"/>
+                    <p:inputText id='Especialidad' required="true" maxlength="15"/> 
+            </h:panelGrid>
+            
+        </p:tab>  
+               
+    </p:tabView> 
+                <br></br>
+           <h:commandButton style="background-color:#E2E2E2 ; width:120px; height: 50px; border-radius: 10px; font-size: 20px; border-color: #005983"  type="button" value="Guardar" onclick="PF('login').show();"/>
+              
+            </h:form>
+            </center> 
+        
+        <!-- Inicio de Model panel-->
+        <div>
+        <p:dialog style="border: 0px" widgetVar="login" modal="true" height="450" width="400" class="fondo" >
+        <h:form>
+            <p:growl id="msg"></p:growl>
+        <center>
+                   <br></br><br></br><br></br>
+                <h:graphicImage value="../images/logo1.png" width="120" height="120" />
+                 <br></br>
+                  <h:panelGrid columns="1" cellspacing="3" class="table-condensed" id="panel">
+                
+                      <h:outputLabel for="pass" value="Ingrese su Contraseña:"/> 
+                  <p:password id="pass"  value="#{beanLogin.pass}" style="border-color: #006699"></p:password>
+               
+                 </h:panelGrid>
+            <br></br>
+            <p:commandButton  value="Ingresar" update="msg,panel" actionListener="#{beanLogin.consultardatos()}" action="perfilMedico?faces-redirect=true" style="border-radius: 7px"/>
+            
+        </center>
+        </h:form> 
+        </p:dialog>
+        </div>
+        
+    </h:body>
+</html>
+

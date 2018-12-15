@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Especialidades</title>
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+    </h:head>
+    <h:body>
+        
+        <!--Inicio de Menu-->
+         <p:menubar style="border:0px">
+            <p:menuitem value="Inicio |" url=""/>
+           <p:menuitem value="Medicamentos |" url="medicamentosAdmin.xhtml"/>
+         </p:menubar>
+        
+        <!--Inicio de Tabla-->
+        <center>
+             <h:graphicImage value="../images/logo1.png" width="80" height="80" /> 
+             
+             <div>
+        <h:form>
+            <p:dataTable var="especialidad" value="#" style="width: 1300px">
+                <f:facet name="header">
+                   Registro de Especialidades
+                </f:facet>
+               
+                <p:column headerText="Especialidad">
+                    <h:outputText value="#"/>
+                </p:column>
+                
+                <p:column headerText="Medicos">
+                    <h:outputText value="#"/>
+                </p:column>
+                
+                <p:column headerText="Extención">
+                    <h:outputText value="#"/>
+                </p:column>
+                
+                <p:column headerText="Ubicación">
+                    <h:outputText value="#"/>
+                </p:column>
+                
+            </p:dataTable>
+        </h:form>
+             </div>
+        </center>
+    </h:body>
+</html>
+

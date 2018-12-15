@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Seleccion de Examenes</title>
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <style>
+             .b2{
+                background: #006699;
+                color: white;
+                border-color: #2a6496;
+                border-radius: 5px;
+                height: 50px;
+                width: 250px;
+                font-size: 17px
+            }
+            
+            .tamaño{
+                width: 1200px;
+            }
+        </style>
+        
+    </h:head>
+    <h:body>
+        
+         <!--Inicio de Tabla-->
+        <center>
+             <h:graphicImage value="../images/logo2.png" width="80" height="80" /> 
+             
+             <div>
+        <h:form> 
+           
+            <p:panelGrid columns="1" class="tamaño">
+                 <f:facet name="header">
+                   Examenes Medicos
+                </f:facet>
+               
+                <p:panel header="Análisis de Sangre" style="font-size: 15px">
+                    <p:selectManyCheckbox id="selectedTipoExamen1" value="#{beanExamen.selectedTipoExamen1}" layout="grid" columns="3">
+                    <f:selectItems value="#{beanExamen.listaTipoExamen1}" var="ex1" itemLabel="#{ex1.nombreExamen}" itemValue="#{ex1.nombreExamen}"/>
+                   </p:selectManyCheckbox>
+                </p:panel>
+                
+                <p:panel header="Análisis de Heces y Orina" style="font-size: 15px">
+                    <p:selectManyCheckbox id="nombre_examen2" value="#{beanExamen.selectedTipoExamen2}" layout="responsive" columns="3">
+                    <f:selectItems value="#{beanExamen.listaTipoExamen2}" var="ex2" itemLabel="#{ex2.nombreExamen}" itemValue="#{ex2.nombreExamen}"/>
+                   </p:selectManyCheckbox>
+                </p:panel>
+               
+                <p:panelGrid columns="2">
+                    <p:panel header="Examen Prenatal" style="font-size: 15px">
+                    <p:selectManyCheckbox id="selectedTipoExamen3" value="#{beanExamen.selectedTipoExamen3}" layout="grid" columns="3">
+                    <f:selectItems value="#{beanExamen.listaTipoExamen3}" var="ex3" itemLabel="#{ex3.nombreExamen}" itemValue="#{ex3.nombreExamen}"/>
+                   </p:selectManyCheckbox>
+                </p:panel>
+                    
+                    <p:panel header="Prueba estreptocócica" style="font-size: 15px">
+                    <p:selectManyCheckbox id="selectedTipoExamen4" value="#{beanExamen.selectedTipoExamen4}" layout="grid" columns="2">
+                    <f:selectItems value="#{beanExamen.listaTipoExamen4}" var="ex4" itemLabel="#{ex4.nombreExamen}" itemValue="#{ex4.nombreExamen}"/>
+                   </p:selectManyCheckbox>
+                </p:panel>
+             </p:panelGrid>
+                
+                <p:panel header="Otros" style="font-size: 15px">
+                    <p:selectManyCheckbox id="selectedTipoExamen5" value="#{beanExamen.selectedTipoExamen5}" layout="grid" columns="4">
+                    <f:selectItems value="#{beanExamen.listaTipoExamen5}" var="ex5" itemLabel="#{ex5.nombreExamen}" itemValue="#{ex5.nombreExamen}"/>
+                   </p:selectManyCheckbox>
+                </p:panel>
+                
+                <p:panel header="Radiografía" style="font-size: 15px">
+                    <p:selectManyCheckbox id="selectedTipoExamen6" value="#{beanExamen.selectedTipoExamen6}" layout="grid" columns="4">
+                        <f:selectItems value="#{beanExamen.listaTipoExamen6}" var="ex6" itemLabel="#{ex6.nombreExamen}" itemValue="#{ex6.nombreExamen}"/>
+                   </p:selectManyCheckbox>
+                </p:panel>
+                
+             <p:panelGrid columns="3" >
+                    
+                <p:panel header="Resonancia magnética" style="font-size: 15px;">
+                    <p:selectManyCheckbox id="selectedTipoExamen7" value="#{beanExamen.selectedTipoExamen7}" layout="grid" columns="4">
+                    <f:selectItems value="#{beanExamen.listaTipoExamen7}" var="ex7" itemLabel="#{ex7.nombreExamen}" itemValue="#{ex7.nombreExamen}"/>
+                   </p:selectManyCheckbox>
+                </p:panel>
+                    
+                <p:panel header="Tomografía computada" style="font-size: 15px">
+                    <p:selectManyCheckbox id="selectedTipoExamen8" value="#{beanExamen.selectedTipoExamen8}" layout="grid" columns="2">
+                    <f:selectItems value="#{beanExamen.listaTipoExamen8}" var="ex8" itemLabel="#{ex8.nombreExamen}" itemValue="#{ex8.nombreExamen}"/>
+                   </p:selectManyCheckbox>
+                </p:panel>
+                 
+                  <p:panel header="Ultrasonido" style="font-size: 15px">
+                    <p:selectManyCheckbox id="selectedTipoExamen9" value="#{beanExamen.selectedTipoExamen9}" layout="grid" columns="4">
+                        <f:selectItems value="#{beanExamen.listaTipoExamen9}" var="ex9" itemLabel="#{ex9.nombreExamen}" itemValue="#{ex9.nombreExamen}"/>
+                   </p:selectManyCheckbox>
+                </p:panel>
+             </p:panelGrid>
+            </p:panelGrid>
+            
+            <br></br>
+             <center> 
+                 <h:commandButton value="SELECCIONAR" class="b2" actionListener="#{beanExamen.insertarExamen()}"/>
+             </center>
+        </h:form>
+             </div>  
+             </center>
+       
+    </h:body>
+</html>
+

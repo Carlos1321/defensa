@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Medico</title>
+    <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <style>
+            .logo{
+                width: 300px;
+                height: 90px;
+            }
+            .aling{
+                margin-left: 950px;
+                margin-right: 30px;
+                border-radius: 5px;
+                width: 150px;
+                height: 40px;
+            }
+             
+            .b{
+                border-radius: 7px;
+                border-color: #005983;
+                background: #005983;
+                color: white;
+                    
+            }
+            
+            .value {
+                font-weight: bold;
+            }
+     
+            .ui-carousel {
+                 margin-bottom:5px;
+            }
+            .uppercase { 
+                text-transform: uppercase !important; 
+            }
+            
+            
+        </style>
+    </h:head>
+    <h:body>
+        <br></br>
+        <center><h:graphicImage value="../images/logo.png" class="logo"/></center>
+        <br></br>
+        
+        <!--Inicio de barra de menu -->
+      
+    <p:menubar style="border:0px">
+    <p:menuitem value="Inicio |" url="index.xhtml"/>
+    <p:menuitem value="Acerca de Nosotros" url="#"/>
+    <p:menuitem value="| Actualizar Perfil" url="perfilMedico.xhtml" class="aling"/>
+    </p:menubar>
+        
+                
+        <p:panel style="background: #2a2a2a">
+        <center><h:graphicImage value="../images/inicio.gif" style="width: 910px; height: 400px"/></center>
+        </p:panel>
+        
+        <!--paneles de acciones -->
+        <br></br>
+        
+        <div>
+        <center>
+            <h:form>
+        <p:panelGrid columns="4" style="border: 0px; width:100%; height: 100px">
+            <p:panel style="border: 0px;">
+                 <center> 
+                    <h:graphicImage value="../images/log8.png" style="width: 150px; height: 150px"/><br></br><br></br>
+                    <!-- <h:outputText value="Nuevo Expediente" /> --> 
+                    <h:commandButton value="Nueva Consulta" type="button" onclick="PF('dm').show()" class="b"/></center>
+            </p:panel>
+            
+            <p:panel style="border: 0px;">
+                 <center> 
+                    <h:graphicImage value="../images/exp.png" style="width: 150px; height: 150px"/><br></br><br></br>
+                    <!-- <h:outputText value="Nuevo Expediente" /> --> 
+                    <h:commandButton value="Ver Expediente"  onclick="PF('dm').show()" type="button" class="b"/>
+            </center>
+            </p:panel>
+            <p:panel style="border: 0px">
+                <center>
+                    <h:graphicImage value="../images/log6.png" style="width: 150px; height: 150px"/><br></br><br></br>
+                     <h:commandButton value="Especialidades" action="especialidades?faces-redirect=true" class="b"/></center>
+            </p:panel>
+            
+            <p:panel style="border: 0px; ">
+                <center>
+                    <h:graphicImage value="../images/log7.png" style="width: 150px; height: 150px"/><br></br><br></br>
+                    <h:commandButton value="Medicamentos" action="medicamentos?faces-redirect=true" class="b"/></center>
+            </p:panel>
+        </p:panelGrid>
+            </h:form>
+        </center>
+    </div>
+        
+         <!-- Inicio de Model panel-->
+        <div>
+        <p:dialog style="border: 0px" widgetVar="dm" modal="true" height="320" width="400"  >
+        <h:form>
+            <p:growl id="msg"></p:growl>
+        <center>
+                   <br></br>
+                <h:graphicImage value="../images/logo1.png" width="120" height="120" />
+                 <br></br><br></br>
+                  <h:panelGrid columns="1" cellspacing="3" class="table-condensed" id="panel">
+                    <h:outputLabel for="nexp" value="Número de Expediente:"/>
+                    <p:inputText id='nexp' required="true" maxlength="5"/>
+                 </h:panelGrid>
+            <br></br>
+            <p:commandButton  value="Ingresar" update="msg,panel" actionListener="#" style="border-radius: 7px"/>
+            <!--Boton al dar ingresar valida el N°de Espediente y lleva a la pagina datosMedicos.xhtml -->
+            
+        </center>
+        </h:form> 
+        </p:dialog>
+        </div>
+         
+    </h:body>  
+</html>
+
+
+

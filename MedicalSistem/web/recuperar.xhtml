@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Recuperar contraseña</title>
+        
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <style type="text/css">
+            .uppercase { 
+                text-transform: uppercase !important; 
+            }
+            
+            .bod{
+                background-image: url(../images/medicina1.jpg);
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+        </style>
+    </h:head>
+    <h:body class="bod">
+        <center>
+            <br></br><br></br><br></br> <br></br><br></br><br></br>
+            <p:panel  style="width: 500px; border-radius: 8px">
+            <h:graphicImage value="../images/logo.png" width="300" height="100"/>
+            <br></br><br></br><br></br>
+        <h:form>
+            <p:growl id="msg"/>
+            <h:panelGrid columns="2" cellpadding="7">
+                <h:outputLabel value="Ingrese su Correo:"/>
+                <h:inputText value="#{beanLogin.correo}" required="true" requiredMessage="Campo requerido"/>
+                <h:outputLabel value="Ingrese Usuario:"/>
+                <h:inputText value="#{beanLogin.usuario}" class="uppercase" required="true" requiredMessage="Campo requerido" />
+                <center> <p:commandButton value="Enviar" update="msg" actionListener="#{beanLogin.recuperacion()}"/></center>
+            </h:panelGrid>
+        </h:form>
+            </p:panel>
+        </center>
+    </h:body>
+</html>
+

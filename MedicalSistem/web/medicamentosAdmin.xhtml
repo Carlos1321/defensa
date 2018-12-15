@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <title>Medicamentos</title>
+         <style type="text/css">
+             .b{
+                background-image: url(../images/fondo.png);
+                background-size: 100%;
+                background-repeat: no-repeat;  
+            }
+        </style>
+    </h:head>
+    <h:body style=" background-image: url(../images/fondo.png); background-size: 100%;">
+        <div>
+            <h:form>
+                
+         <p:menubar style="border:0px">
+            <p:menuitem value="Inicio |" url="admin.xhtml"/>
+            <p:menuitem value="Especialidades |" url="especialidades.xhtml"/>
+            <p:menuitem value="Examenes |" url="especialidades.xhtml"/>
+            <p:menuitem>
+                <p:commandButton value="Nuevo Medicamento" style="background: #d7ffff; color:#005983; border-color: #005983; margin-left: 770px"/>
+            </p:menuitem>
+         </p:menubar>
+         </h:form>
+        </div>
+        
+        <!--Inicio de Tabla-->
+        <center>
+             <h:graphicImage value="../images/logo1.png" width="80" height="80" /> 
+             
+             <div>
+        <h:form>
+            <p:dataTable var="especialidad" value="#" style="width: 1300px">
+                <f:facet name="header">
+                   Registro de Medicamentos
+                </f:facet>
+               
+                <p:column headerText="Codigo" style="width: 110px">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                    
+                <p:column headerText="Nombre genérico">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                 
+                <p:column headerText="Via de administración"/>
+                    <center><h:outputText value="#"/></center>
+                
+                <p:column headerText="Cantidad que contiene">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                
+                <p:column headerText="Laboratorio">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                
+                <p:column headerText="Fecha de vencimiento">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                
+                <p:column headerText="No. de Lote">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                
+                <p:column headerText="Forma de Conservarlo">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                
+                    <p:column headerText="" style="width: 110px">
+                    <p:commandButton value="Eliminar" style="background: #d7192f; color:white; border-color: #005983"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+             </div>
+        </center>
+    </h:body>
+</html>
+

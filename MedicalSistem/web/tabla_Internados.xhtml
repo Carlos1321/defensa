@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Tabla Internados</title>
+         <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <style type="text/css">
+            .b1{
+                background: #ff3111;
+                color: white;
+                border-color: #2a6496;
+            }
+            
+            .b2{
+                background: #006699;
+                color: white;
+                border-color: #2a6496;
+            }
+            
+        </style>
+    </h:head>
+    <h:body>
+                    <!--Inicio de Tabla-->
+        <center>
+             <h:graphicImage value="../images/logo1.png" width="80" height="80" /> 
+             
+             <div>
+        <h:form>
+            <p:dataTable var="especialidad" value="#" style="width: 1300px">
+                <f:facet name="header">
+                   Registro de Pacientes Internados
+                </f:facet>
+               
+                <p:column headerText="Codigo Internación">
+                    <h:outputText value="#"/>
+                </p:column>
+                <p:column headerText="Codigo de Habitación">
+                    <h:outputText value="#"/>
+                    <h:commandButton value="Editar" type="button" onclick="PF('verHabitacion').show()"/>
+                </p:column>
+                <p:column headerText="Número de cama">
+                    <h:outputText value="#"/>
+                </p:column>
+                <p:column headerText="Hora de Ingreso">
+                    <h:outputText value="#"/>
+                </p:column>
+                <p:column headerText="Fecha de Ingreso">
+                    <h:outputText value="#"/>
+                </p:column>
+                <p:column headerText="Hora de Alta">
+                    <h:outputText value="#"/>
+                </p:column>
+                <p:column headerText="Fecha de Alta">
+                    <h:outputText value="#"/>
+                </p:column>
+                <p:column headerText="">
+                    
+                        <!--Botones de acciones -->   
+                    <center> 
+                    <h:commandButton value="Actualizar" class="b2"/>
+                    </center>
+                    
+                </p:column>
+            </p:dataTable>
+        </h:form>
+             </div>
+        </center>
+                 
+                  <!-- Inicio de Model panel-->
+        <div>
+        <p:dialog style="border: 0px" widgetVar="verHabitacion" modal="true" height="450" width="350"   >
+        <h:form>
+            <p:growl id="msg"></p:growl>
+        <center>
+            
+            <br></br>
+                <h:graphicImage value="../images/logo1.png" width="120" height="120" />
+                 <br></br><br></br>
+                  <h:panelGrid columns="1" cellspacing="3" class="table-condensed" id="panel">
+                    <h:outputLabel for="numero_habitacion" value="Número de Habitación:"/>
+                    <p:inputText id='numero_habitacion' required="true" maxlength="5"/>
+                    
+                    <h:outputLabel for="area" value="Área"/>
+                    <p:selectOneMenu id="area" value="#{rolView.console}">
+                        <f:selectItem itemLabel="Seleccione..." itemValue="0"/>
+                     </p:selectOneMenu>
+                       
+                    <h:outputLabel for="tipo_habitacion" value="Tipo de habitación:"/>
+                    <p:selectOneMenu id="tipo_habitacion" value="#{rolView.console}">
+                     <f:selectItem itemLabel="Seleccione..." itemValue="0"/> 
+                    </p:selectOneMenu>
+                    
+                 </h:panelGrid>
+            <br></br>
+            <p:commandButton  value="Ingresar" update="msg,panel" actionListener="#" style="border-radius: 7px"/>
+         
+        </center>
+            </h:form> 
+        </p:dialog>
+        </div>
+    </h:body>
+</html>
+

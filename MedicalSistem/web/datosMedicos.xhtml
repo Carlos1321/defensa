@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Datos Medicos</title>
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <style type="text/css">
+            .bod{
+                background: url(../images/dm1.jpg);
+                background-size: 100%;
+                background-repeat: no-repeat;
+                
+            }
+            
+            .p{
+                width: 500px;
+                height: 450px;
+                
+            }
+        </style>
+    </h:head>
+    
+    <h:body class="bod">
+           <!--Inicio de barra de menu -->
+          
+        <center>
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br><br></br>
+            
+        <h:form>
+            <p:panel class="p">
+       <h:graphicImage value="../images/logo1.png" width="120" height="120" />
+                 <br></br><br></br>
+                  <h:panelGrid columns="2" cellspacing="3" class="table-condensed" id="panel">
+                    <h:outputLabel for="peso" value="Peso(kg):"/>
+                    <p:inputText id='peso' required="true" maxlength="10"  />
+                    
+                    <h:outputLabel for="altura" value="Altura(mt):"/>
+                    <p:inputText id='altura' required="true" maxlength="10"  />
+                    
+                    <h:outputLabel for="imc" value="IMC:"/>
+                    <p:inputText id='imc' required="true" maxlength="10" readonly="true"/> 
+                    
+                    <h:outputLabel for="presion" value="Presión Arterial:"/>
+                    <p:inputText id='presion' required="true" maxlength="10"  /> 
+                    
+                    <h:outputLabel for="alergias" value="Alergias:" />
+                    <p:inputText id='alergias' required="true"/> 
+                 
+                    <h:outputLabel for="console" value="Tipo Sangre:" />
+                    <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" >
+                        <f:selectItem itemLabel="Seleccione..." itemValue="" />
+                        <f:selectItem itemLabel="O-" itemValue="O-" />
+                        <f:selectItem itemLabel="O+" itemValue="O+" />
+                        <f:selectItem itemLabel="A-" itemValue="A-" />
+                        <f:selectItem itemLabel="A+" itemValue="A-" />
+                        <f:selectItem itemLabel="AB-" itemValue="A-" />
+                        <f:selectItem itemLabel="AB+" itemValue="A-" />
+                    </p:selectOneMenu>
+                  </h:panelGrid>
+                 <br></br>
+                 <center><p:commandButton value="Ingresar Datos" action="enfermeria?faces-redirect=true"/></center> 
+            </p:panel>
+        </h:form>  
+        </center>
+    </h:body>
+</html>
+

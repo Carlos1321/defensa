@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Expediente</title>
+         <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+        <style type="text/css">
+            .backg{
+                background: url(../images/fondo1.jpg);
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+        </style>
+        
+    </h:head>
+    <h:body class="backg">
+       <h:form>
+        <center>
+            
+              <!--Inicio de barra de menu -->
+        
+            <p:menubar style="border:0px">
+                <p:menuitem value="Inicio |" url="admin.xhtml"/>
+                <p:menuitem value="Acerca de Nosotros" url="#"/>
+            </p:menubar> 
+        </center>
+       </h:form>  
+             <br></br><br></br>
+             <h:form>
+                 <center>    
+                 <p:panel style="width: 1100px">
+                     
+            <h:graphicImage value="../images/logo2.png" width="100" height="100"  /> 
+            
+            <h:panelGrid columns="2" cellpadding="10">
+                <h3 style="color:#005983 ">No. de Expediente:</h3>
+                <h:outputText value="#" style="font-size: 30px; color:#005983 "/>
+            </h:panelGrid>
+           
+            
+            <p:accordionPanel >
+                
+        <p:tab title="Datos Personales">
+            <h:panelGrid columns="2" cellpadding="10">
+                   
+                    <h:outputLabel for="primer_nombre" value="Primer Nombre"/>
+                    <h:outputText value="#" id="primer_nombre"/>
+                    
+                    <h:outputLabel for="segundo_nombre" value="Segundo Nombre"/>
+                    <h:outputText value="#" id="segundo_nombre"/>
+                      
+                    <h:outputLabel for="tercer_nombre" value="Tercer Nombre"/>
+                     <h:outputText value="#" id="tecer_nombre"/>
+                         
+                    <h:outputLabel for="primer_apellido" value="Primer Apellido" />
+                    <h:outputText value="#" id="primer_apellido"/>
+                    
+                    <h:outputLabel for="segundo_apellido" value="Segundo Apellido"/>
+                    <h:outputText value="#" id="segundo_apellido"/>
+                    
+                    <h:outputLabel for="tercer_apellido" value="Tercer Apellido"/>
+                    <h:outputText value="#" id="tercer_apellido"/>
+                    
+                    <h:outputLabel for="edad" value="Edad"/>
+                    <h:outputText value="#" id="edad"/>
+                    
+                    <h:outputLabel for="sexo" value="Sexo:" style="width:150px"/>
+                    <h:outputText value="#" id="sexo"/>
+                    
+                    <h:outputLabel for="pais" value="País de Origen:"/>
+                    <h:outputText value="#" id="pais"/>
+                    
+                    <h:outputLabel for="dui" value="DUI"/>
+                    <h:outputText value="#" id="dui"/>
+                    
+                    <h:outputLabel for="nit" value="NIT"/>
+                    <h:outputText value="#" id="nit"/>
+                   
+                    <h:outputLabel for="pasaporte" value="Número de pasaporte:"/>
+                    <h:outputText value="#" id="pasaporte"/>
+                    
+                    <h:outputLabel for="fecha_de_nacimiento" value="Fecha de Nacimiento"/>
+                    <h:outputText value="#"/>
+                </h:panelGrid>
+            
+             <p:commandButton value="Actualizar Datos" actionListener="#" style="background:  #005983; color: white"/>
+               
+        </p:tab>
+        <p:tab title="Datos de Responsable">
+            <h:panelGrid columns="2" cellpadding="10">
+             <h:outputLabel for="_nombre1" value="Primer Nombre"/>
+                    <h:outputText value="#" id="_nombre1"/>
+                    
+                    <h:outputLabel for="_nombre2" value="Segundo Nombre"/>
+                    <h:outputText value="#" id="_nombre2"/>
+                        
+                    <h:outputLabel for="_apellido1" value="Primer Apellido" />
+                    <h:outputText value="#" id="_apellido1"/>
+                    
+                    <h:outputLabel for="_apellido2" value="Segundo Apellido"/>
+                    <h:outputText value="#" id="_apellido2"/>
+                    
+                    <h:outputLabel for="telefono" value="telefono"/>
+                    <h:outputText value="#" id="tel"/>
+            </h:panelGrid>
+            <p:commandButton value="Actualizar Datos" onclick="PF('responsable').show()" type="button" style="background:  #005983; color: white"/>
+        </p:tab>
+                
+        <p:tab title="Historial de Citas">
+            
+            <h:panelGrid columns="2" cellpadding="10">
+            <p:dataTable var="cita" value="#" style="width: 850px" >
+                
+                <p:column headerText="ID">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="Usuario">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="fecha">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="Hora">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="triaje">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="Estado">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="Área">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+            </p:dataTable>
+            </h:panelGrid>
+                
+        </p:tab>
+                
+                <p:tab title="Historial de Internamiento">
+                    
+             <h:panelGrid columns="2" cellpadding="10">
+            <p:dataTable var="cita" value="#" style="width: 850px" >
+                
+                <p:column headerText="Codigo de consulta">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="Codigo de Internamiento">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="Fecha de Inicio">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="Hora de Inicio">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                 <p:column headerText="Fecha de Alta">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                <p:column headerText="Hora de Alta">
+                    <center><h:outputText value="#"/></center>
+                </p:column>
+                
+            </p:dataTable>
+            </h:panelGrid>
+        </p:tab> 
+    </p:accordionPanel>
+        </p:panel>
+           </center>
+             
+        </h:form>    
+            
+         <!-- Inicio de Model panel Agregar Examen-->
+        <div>
+            <center>
+        <p:dialog style="border: 0px" widgetVar="responsable" modal="true" height="500" width="500"  >
+           <h:form> 
+               <p:growl id="mensaje"></p:growl>
+               
+               <h:graphicImage value="../images/logo1.png" width="120" height="120" />
+                 <br></br><br></br>
+                    <h:panelGrid columns="2" cellpadding="10">
+                    <h:outputLabel for="p_nombre" value="Primer Nombre"/>
+                    <h:inputText value="#" id="p_nombre"/>
+                    
+                    <h:outputLabel for="s_nombre" value="Segundo Nombre"/>
+                    <h:inputText value="#" id="s_nombre"/>
+                        
+                    <h:outputLabel for="p_apellido" value="Primer Apellido" />
+                    <h:inputText value="#" id="p_apellido"/>
+                    
+                    <h:outputLabel for="s_apellido" value="Segundo Apellido"/>
+                    <h:inputText value="#" id="_apellido"/>
+                    
+                    <h:outputLabel for="t" value="telefono"/>
+                    <h:inputText value="#" id="t"/>
+            </h:panelGrid>
+                 <br></br>
+             <p:commandButton value="Actualizar" actionListener="#" style="background:  #005983; color: white"/>
+                 
+           </h:form>
+        </p:dialog>
+            </center>
+        </div>
+        
+    </h:body>
+</html>
+

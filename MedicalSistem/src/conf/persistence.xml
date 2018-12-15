@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="MedicalSistemPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>persistencia.Zona</class>
+    <class>persistencia.PerfilPersonal</class>
+    <class>persistencia.ConsultaMedicamento</class>
+    <class>persistencia.Pais</class>
+    <class>persistencia.Expediente</class>
+    <class>persistencia.DatosPersonales</class>
+    <class>persistencia.Estado</class>
+    <class>persistencia.PruebaVista</class>
+    <class>persistencia.ConsultaExamen</class>
+    <class>persistencia.Medicamento</class>
+    <class>persistencia.Habitacion</class>
+    <class>persistencia.PerfilEspecialidad</class>
+    <class>persistencia.Examen</class>
+    <class>persistencia.Especialidad</class>
+    <class>persistencia.Internamiento</class>
+    <class>persistencia.Responsable</class>
+    <class>persistencia.Rol</class>
+    <class>persistencia.TipoCita</class>
+    <class>persistencia.TipoExamen</class>
+    <class>persistencia.Cita</class>
+    <class>persistencia.Consulta</class>
+    <class>persistencia.DatosMedicos</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ra?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+    </properties>
+  </persistence-unit>
+</persistence>

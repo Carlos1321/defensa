@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Tabla de Examenes</title>
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+        
+    </h:head>
+    <h:body>
+        <!-- Inicio de Model panel-->
+        <div>
+            <h:form>
+                <p:autoUpdate/>
+            </h:form>
+
+
+            <h:form>    
+       <!--Inicio de Tabla-->
+        <center>
+             <h:graphicImage value="../images/logo2.png" width="80" height="80"  /> 
+             
+             <br></br><br></br>
+             <center><p:commandButton  value="Agregar Examen"  style="border-radius: 7px"  onclick="PF('agregExam').show()" type="button"/></center>
+             <br></br>
+             
+             <p:dataTable var="exam" value="#{beanExamen.listaTodoTipoExamen}" style="width: 850px" >
+                <f:facet name="header">
+                   Examenes que Realiza el Hospital
+                </f:facet>
+                
+                <p:column headerText="Nombre">
+                    <center><h:outputText value="#{exam.nombreExamen}"/></center>
+                </p:column>
+                <p:column headerText="Tipo">
+                    <center><h:outputText value="#{exam.tipoExamen}"/></center>
+                </p:column>
+            </p:dataTable>
+        
+             
+             </center>
+           </h:form>
+        
+        </div>
+       
+        
+         <!-- Inicio de Model panel Agregar Examen-->
+        <div>
+            <center>
+        <p:dialog style="border: 0px" widgetVar="agregExam" modal="true" height="300" width="500"  >
+           <h:form> 
+               <p:growl id="mensaje"></p:growl>
+               
+               <h:graphicImage value="../images/logo1.png" width="120" height="120" />
+                 <br></br><br></br>
+                  <h:panelGrid columns="2" cellspacing="5" class="table-condensed" id="panel">
+                    <h:outputLabel for="nombre_examen" value="Nombre del Examen:"/>
+                    <p:inputText id='nombre_examen' required="true" maxlength="10" value="#{beanExamen.nombre_examen}" />
+                    
+                    <h:outputLabel for="tipo_examen" value="Tipo:"/>
+                    <p:selectOneMenu id="tipo_examen" value="#{beanExamen.tipo_examen}">
+                        <f:selectItems value="#{beanExamen.selectTipoExamen}" />
+                    </p:selectOneMenu>
+                    
+                  </h:panelGrid>
+                 <br></br>
+                 <center> 
+                     <p:commandButton value="Ingresar" actionListener="#{beanExamen.insertarTipoExamen()}" onclick="PF('agregExam').hide()"/>
+                 </center>
+           </h:form>
+        </p:dialog>
+            </center>
+        </div>
+    </h:body>
+</html>
+
