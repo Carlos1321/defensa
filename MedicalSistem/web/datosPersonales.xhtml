@@ -5,93 +5,97 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-    <title>Datos Personales</title>
-          <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
-          <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
-          
-           <style type="text/css">
+        <title>Datos Personales</title>
+        <meta name="viewoport" content="width=device-width, initial-scale=2.0"/>
+        <link data-prerender="keep" rel="icon" type="image/png"  href="../images/logo1.png"/>
+
+        <style type="text/css">
             .bod{
                 background: url(../images/dm1.jpg);
                 background-size: 100%;
                 background-repeat: no-repeat;
-                
+
             }
-            </style>
+        </style>
     </h:head>
-    
+
     <h:body class="bod">
         <br></br>
         <center>
             <div>
-                
-        <h:form>
-            <p:panel id="panel" header="Perfil de Personal" style="width: 50%; ">
-                <center> 
-                     <h:graphicImage value="../images/logo1.png" width="100" height="100" />
-                     <br></br><br></br>
-                     
-                    <h:panelGrid columns="2" cellspacing="8">
-                    
-                    <h:outputLabel for="primer_nombre" value="Primer Nombre"/>
-                    <p:inputText id='primer_nombre' required="true" maxlength="15" requiredMessage="Primer nombre obligatorio"/>
-                            
-                    <h:outputLabel for="segundo_nombre" value="Segundo Nombre"/>
-                    <p:inputText id='segundo_nombre' required="true" maxlength="15" />
-                      
-                    <h:outputLabel for="tercer_nombre" value="Tercer Nombre"/>
-                    <p:inputText id='tercer_nombre'  maxlength="15"/> 
-                         
-                    <h:outputLabel for="primer_apellido" value="Primer Apellido" />
-                    <p:inputText id='primer_apellido' required="true" maxlength="15" requiredMessage="Primer apellido obligatorio"/>
-                    
-                    <h:outputLabel for="segundo_apellido" value="Segundo Apellido"/>
-                    <p:inputText id='segundo_apellido'  maxlength="15"/>
-                    
-                    <h:outputLabel for="tercer_apellido" value="Tercer Apellido"/>
-                    <p:inputText id='tercer_apellido' maxlength="15"/>
-                    
-                    <h:outputLabel for="edad" value="Edad"/>
-                    <p:inputMask mask="99999999-9" id='dui' maxlength="15"/>
-                    
-                    <h:outputLabel for="sexo" value="Sexo:" style="width:150px"/>
-                    <p:selectOneRadio id="sexo" value="sexo">
-                        <f:selectItem itemLabel="Femenino" itemValue="F"/>
-                        <f:selectItem itemLabel="Masculino" itemValue="M"/>
-                    </p:selectOneRadio>
-                    
-                    <h:outputLabel for="pais" value="País de Origen:"/>
-                    <p:selectOneMenu id="pais" value="#">
-                        <f:selectItem itemLabel="Seleccione uno" itemValue=""/>
-                        <f:selectItems value="#"/>
-                    </p:selectOneMenu>
-                    
-                    <h:outputLabel for="dui" value="DUI"/>
-                    <p:inputMask mask="99999999-9" id='dui' maxlength="15"/>
-                    
-                    <h:outputLabel for="nit" value="NIT"/>
-                    <p:inputMask mask="9999-999999-999-9" id='nit' maxlength="10"/>
-                   
-                    <h:outputLabel for="pasaporte" value="*Número de pasaporte:"/>
-                    <p:inputText id='pasaporte' required="true" maxlength="11"/>
-                    
-                    <h:outputText value="*Rellene este campo si el pais " style="font-size: 12px; margin-left: 60px; margin-top: 0px"/>
-                    <h:outputText value="de origen es diferente a El Salvador" style="font-size: 12px"/>
-                 
-                    <h:outputLabel for="fecha_de_nacimiento" value="Fecha de Nacimiento"/>
-                    <p:calendar id="fecha_nacimiento" value="#{beanPerfilPersonal.fechaNacimiento}" showOn="button"
-                                readonlyInput="true" required="true" locale="es" navigator="true" requiredMessage="La fecha es obligatoria"
-                                pattern="dd/MM/yyyy"/>
-                     </h:panelGrid>
-                     
-                     <p:commandButton value="Ingresar Datos" actionListener="#"/>
-               
-                      </center>
-                
-            </p:panel>
-        </h:form>
+
+                <h:form>
+                    <p:messages id="mensaje" showDetail="true" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+                    <p:growl id="msg" showDetail="false"/>
+                    <p:panel id="panel" header="Perfil de Personal" style="width: 50%; ">
+                        <center> 
+                            <h:graphicImage value="../images/logo1.png" width="100" height="100" />
+                            <br></br><br></br>
+
+                            <h:panelGrid columns="2" cellspacing="8">
+
+                                <h:outputLabel for="primer_nombre" value="Primer Nombre"/>
+                                <p:inputText id='primer_nombre' value="#{DatosPersonales.datosPersonales.primerNombre}" required="true" maxlength="15" requiredMessage="Primer nombre obligatorio"/>
+
+                                <h:outputLabel for="segundo_nombre" value="Segundo Nombre"/>
+                                <p:inputText id='segundo_nombre' value="#{DatosPersonales.datosPersonales.segundoNombre}" required="true" maxlength="15" />
+
+                                <h:outputLabel for="tercer_nombre" value="Tercer Nombre"/>
+                                <p:inputText id='tercer_nombre' value="#{DatosPersonales.datosPersonales.tercerNombre}"  maxlength="15"/> 
+
+                                <h:outputLabel for="primer_apellido" value="Primer Apellido" />
+                                <p:inputText id='primer_apellido' value="#{DatosPersonales.datosPersonales.primerApellido}" required="true" maxlength="15" requiredMessage="Primer apellido obligatorio"/>
+
+                                <h:outputLabel for="segundo_apellido" value="Segundo Apellido"/>
+                                <p:inputText id='segundo_apellido' value="#{DatosPersonales.datosPersonales.segundoApellido}" maxlength="15"/>
+
+                                <h:outputLabel for="tercer_apellido" value="Tercer Apellido"/>
+                                <p:inputText id='tercer_apellido' value="#{DatosPersonales.datosPersonales.tercerApellido}" maxlength="15"/>
+
+                                <h:outputLabel for="edad" value="Edad"/>
+                                <p:inputNumber thousandSeparator="" value="#{DatosPersonales.datosPersonales.edad}"  id='edad' maxlength="15"/>
+
+                                <h:outputLabel for="sexo" value="Sexo:" style="width:150px"/>
+                                <p:selectOneRadio id="sexo" value="#{DatosPersonales.datosPersonales.sexo}">
+                                    <f:selectItem itemLabel="Femenino" itemValue="Femenino"/>
+                                    <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                                </p:selectOneRadio>
+
+                                <h:outputLabel for="pais" value="País de Origen:"/>
+                                <p:selectOneMenu id="advanced" value="#{DatosPersonales.datosPersonales.pais}" filter="true" >
+                                    <f:selectItem itemLabel="Seleccione uno" itemValue=""/>
+                                    <f:selectItems value="#{DatosPersonales.pais}" var="pais" itemLabel="#{pais.nombrePais}" itemValue="#{pais.nombrePais}"/>
+                                </p:selectOneMenu>
+
+                                <h:outputLabel for="dui" value="DUI"/>
+                                <p:inputMask mask="99999999-9" value="#{DatosPersonales.datosPersonales.dui}" id='dui' maxlength="15"/>
+
+                                <h:outputLabel for="nit" value="NIT"/>
+                                <p:inputMask mask="9999-999999-999-9" value="#{DatosPersonales.datosPersonales.nit}" id='nit' maxlength="10"/>
+
+                                <h:outputLabel for="pasaporte" value="*Número de pasaporte:"/>
+                                <p:inputText id='pasaporte' value="#{DatosPersonales.datosPersonales.pasaporte}"  maxlength="11"/>
+
+                                <h:outputText value="*Rellene este campo si el pais " style="font-size: 12px; margin-left: 60px; margin-top: 0px"/>
+                                <h:outputText value="de origen es diferente a El Salvador" style="font-size: 12px"/>
+
+                                <h:outputLabel for="fecha_de_nacimiento" value="Fecha de Nacimiento"/>
+                                <p:calendar id="fecha_nacimiento" value="#{DatosPersonales.datosPersonales.fechaDeNacimiento}" showOn="button"
+                                            readonlyInput="true" required="true" locale="es" navigator="true" requiredMessage="La fecha es obligatoria"
+                                            pattern="dd/MM/yyyy"/>
+                            </h:panelGrid>
+
+                            <p:commandButton value="Ingresar Datos" update="panel,mensaje" actionListener="#{DatosPersonales.guardar()}"/>
+
+                        </center>
+
+                    </p:panel>
+                </h:form>
             </div>
         </center>
-        
+
     </h:body>
 </html>
 
